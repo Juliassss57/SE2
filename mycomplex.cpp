@@ -1,18 +1,41 @@
+/*!
+    @file
+    @brief Заголовочный файл класса Complex
+*/
+
 #include<iostream>
 #include   <cmath>
 #include "mycomplex.h"
+
 using namespace std;
+/*!
+    @brief Класс комплексного числа
+*/
 
 Complex::Complex(double aRe, double aIm){
+      /*!
+    @brief Действительная составляющая
+    */
     Re = aRe;   
+      /*!
+    @brief Мнимая составляющая
+    */
     Im = aIm;
 }
+
+/*!
+    @brief Конструктор класса
+    @param complex_num Комплексное число
+*/
 
 Complex::Complex(const Complex& aRval){
     Re =aRval.Re;
     Im=aRval.Im;
 }
 
+/*!
+    @brief Деструктор класса
+*/
 Complex::~Complex() {
     Re =0.0;
     Im= 0.0;
@@ -23,7 +46,11 @@ voidComplex::Set(double aRe,double aIm) {
     Im = aIm;
 }
 
-Complex::operator double(){  
+/*!
+    @brief Возвращает модуль комплексного числа
+    @return Модуль комлпксного числа
+*/
+Complex::operator double(){
     return abs();
 }
 
@@ -76,7 +103,7 @@ Complex Complex::operator/(const double& aRval){
     Complex Result;
     Result.Re = Re/aRval;
     Result.Im = Im/aRval;
-    return Result; 
+    return Result;
 }
 
 Complex&Complex::operator+= (const Complex& arval){
@@ -85,14 +112,14 @@ Complex&Complex::operator+= (const Complex& arval){
     return * this;
 }
 
-Comple&Complex::operator-=(const Complex& aRval){ 
+Comple&Complex::operator-=(const Complex& aRval){
     Re-=aRval.Re;
     Im-= aRval.Im;
     return *this;
 }
 
 Complex&Complex::operator*=(const Complex&aRval){
-    double tmpRe = Re; 
+    double tmpRe = Re;
     Re = Re * aRval.Re - Im * aRval.Im;
     Im = Im * aRval.Re + tmpRe * aRval.Im;
     return *this;
@@ -116,7 +143,7 @@ Complex&Complex::operator*=(const double&aRval){
 
 Complex&Complex::operator/=(const double&aRval){
     Re/=aRval; Im /=aRval;
-    return *this; 
+    return *this;
 }
 
 Complex&Complex::operator=(const Complex& aRval){
@@ -134,7 +161,7 @@ Complex&Complex::operator=(const double& aRval){
 istream &operator >>(istream &stream, Complex&a){
     char tmp[256];
     stream >> a.Re >> a.Im >> tmp;
-    return stream; 
+    return stream;
 }
 
 ostream &operator<<(ostream&stream,Complex&a){
